@@ -20,6 +20,13 @@ In structured programming, it's common to copy a structure and add or modify the
 ### Polymorphism
 Objects belonging to the same branch of a hierarchy, when told to do the same thing, can manifest that behavior differently.
 ## Java Syntax Notions
+
+### Access Specifier
+* public: Any object in any package can see the variable. 	
+* protected: Any object defined in the same package, or a subclass (in any package), can see the variable.
+* No specifier: Only objects whose classes are defined in the same package can see the variable.
+* private: 	Only the class containing the variable can see it. 
+
 ### Static and instance methods
 There are two types of methods: instance and static. Static methods or class methods’ don't dependent on object's state. Object instance are not needed to invoke them. Just the name of the class.
 ```
@@ -48,7 +55,9 @@ class TestClass {
 ```
 ### final classes, methods and fields
 A final class is simply a class that can't be extended. This does not mean that all references to objects of the class would act as if they were declared as final.
-Final method can't be overridden (for object scope) or hidden (for static). This allows the developer to create functionality that cannot be changed by subclasses.  
+
+Final method can't be overridden (for object scope) or hidden (for static). This allows the developer to create functionality that cannot be changed by subclasses. 
+
 ### abstract class
 It cannot be instantiated and may have abstract methods (only abstract classes can have abstract methods). While an interface is used to make a class have a complete set of methods, an abstract class is used to group classes in a family. A class can only extend one abstract class but can implements multiple interfaces.
 
@@ -66,22 +75,11 @@ Any method (except static or default starting java 8) are abstract and public. N
 
 Java 8 enables implementing (default and static) methods inside of an interface. Then the difference between a java 8 interface and an abstract class is that interfaces are not a part of the class hierarchy and still does not allow constructors nor non final or private members.
 
-### equals and ==
-If a class does not override the equals method, then it defaults to the equals(Object o) method of the closest parent class that has overridden this method. If no parent class provided an override, then it defaults to the method from the ultimate parent class, Object. Per the Object API this is the same as ==.
-
-### Access Specifier
-* public: Any object in any package can see the variable. 	
-* protected: Any object defined in the same package, or a subclass (in any package), can see the variable.
-* No specifier: Only objects whose classes are defined in the same package can see the variable.
-* private: 	Only the class containing the variable can see it. 
-### Wildcards
-`Collection<?>` (collection of unknown) is a collection whose element type matches anything called a wildcard type. The add method is forbidden: add takes arguments of type E, the element type of the collection. On the other hand, `get()` could be called. `List<? extends SomeClass>` is a bounded wildcard. The ? means this unknown type is a subtype of SomeClass. 
-### String, StringBuilder and StringBuffer
-* String is immutable  (once created can not be changed) object. Every immutable object in Java is thread safe: cannot be used by two threads simultaneously. Once assigned, they cannot be changed.
-* StringBuffer is mutable. It has the same methods as the StringBuilder, but each method in StringBuffer is synchronized that is StringBuffer is thread safe.
-* StringBuilder is same as the StringBuffer. It stores the object in heap and it can also be modified. StringBuilder is not thread safe. StringBuilder is fast as it is not thread safe . 
 ### super and this
 `super` is used to access methods of the base class while this is used to access methods of the current class. `super()` refers to constructor of the base class, and this() refers to the constructor of the very class where you are writing this code.
+
+### equals and ==
+If a class does not override the equals method, then it defaults to the equals(Object o) method of the closest parent class that has overridden this method. If no parent class provided an override, then it defaults to the method from the ultimate parent class, Object. Per the Object API this is the same as ==.
 ### Overloading and Overriding
 1. Polymorphism applies to overriding, not to overloading.
 2. Overriding is a runtime concept while overloading is a compile-time concept.
@@ -115,6 +113,9 @@ class Child extends Parent{
     }
 }
 ```
+### Wildcards
+`Collection<?>` (collection of unknown) is a collection whose element type matches anything called a wildcard type. The add method is forbidden: add takes arguments of type E, the element type of the collection. On the other hand, `get()` could be called. `List<? extends SomeClass>` is a bounded wildcard. The ? means this unknown type is a subtype of SomeClass. 
+
 ### Exceptions
 A problem that arises during the execution of a program that disrupts the program flow and terminates it abnormally. 
 * Checked exceptions − occur at the compile time, also called as compile time exceptions. 
@@ -145,4 +146,8 @@ The java.io package contains nearly every class to perform input and output (I/O
 * Character Streams are input and output for 16-bit unicode. The most used related classes are FileReader and FileWriter. Internally FileReader uses FileInputStream and FileWriter uses FileOutputStream but the difference is that FileReader reads two bytes at a time and FileWriter writes two bytes at a time.
 * Standard Streams: Standard Input (System.in), Standard Output (System.out) and Standard Error (System.err). 
 * Directories in Java are a File which can contain a list of other files and directories. 	
+### String, StringBuilder and StringBuffer
+* String is immutable  (once created can not be changed) object. Every immutable object in Java is thread safe: cannot be used by two threads simultaneously. Once assigned, they cannot be changed.
+* StringBuffer is mutable. It has the same methods as the StringBuilder, but each method in StringBuffer is synchronized that is StringBuffer is thread safe.
+* StringBuilder is same as the StringBuffer. It stores the object in heap and it can also be modified. StringBuilder is not thread safe. StringBuilder is fast as it is not thread safe. 
 
