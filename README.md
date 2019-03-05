@@ -27,15 +27,18 @@ public class Main {
         System.out.println("Static method call: " + TestClass.staticMethod());
         //Creating an instance
         TestClass instance = new TestClass();
-        System.out.println("instance method call: " + instance.instanceMethod());
+        System.out.println("Instance method call: " + instance.instanceMethod());
     }
 }
+
 class TestClass {
     private static int staticValue = 1;
     private int nonStaticValue = 0;
+    
     public static int staticMethod(){
         return staticValue;
     }
+    
     public int instanceMethod(){
         return nonStaticValue;
     }
@@ -66,6 +69,7 @@ public class Main {
         child.eatsMeat(); //prints "No, Vegan"
     }
 }
+
 class Parent{
     public void eatsMeat(){
         System.out.println("yes");
@@ -79,6 +83,7 @@ class Parent{
             System.out.println("Yes");
     }
 }
+
 class Child extends Parent{
     //overriding method
     public void eatsMeat(){
