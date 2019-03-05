@@ -49,6 +49,22 @@ class TestClass {
 ### final classes, methods and fields
 A final class is simply a class that can't be extended. This does not mean that all references to objects of the class would act as if they were declared as final.
 Final method can't be overridden (for object scope) or hidden (for static). This allows the developer to create functionality that cannot be changed by subclasses.  
+### abstract class
+It cannot be instantiated and may have abstract methods (only abstract classes can have abstract methods). While an interface is used to make a class have a complete set of methods, an abstract class is used to group classes in a family. A class can only extend one abstract class but can implements multiple interfaces.
+
+An abstract method cannot be implemented `public abstract void doAbstractStuff();`
+
+The following combinations are illegal: abstract static, abstract final, abstract native, private abstract, synchronized abstract, abstract strictfp.
+### interface
+It is a blueprint that defines a set of behaviors to be implemented. An interface can only have constants, method signatures, default and static methods with implementations and nested types. 
+
+An class can implement one interface or more. An interface can extend multiple interfaces. Constructors are not allowed in interfaces, and an interface cannot be instantiated.
+
+Only public constants are allowed as fields in an interface. Public attributes or attributes with no modifier will be implicitly considered static final. 
+
+Any method (except static or default starting java 8) are abstract and public. No private methods allowed (but starting from java 9 we can have concrete private methods). All abstract methods in an interface are public abstract implicitly. 
+
+Java 8 enables implementing (default and static) methods inside of an interface. Then the difference between a java 8 interface and an abstract class is that interfaces are not a part of the class hierarchy and still does not allow constructors nor non final or private members.
 
 ### equals and ==
 If a class does not override the equals method, then it defaults to the equals(Object o) method of the closest parent class that has overridden this method. If no parent class provided an override, then it defaults to the method from the ultimate parent class, Object. Per the Object API this is the same as ==.
