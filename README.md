@@ -52,10 +52,20 @@ class TestClass {
 }
 
 ```
+A top level class cannot be static. Only inner classes can. 
 ### final classes, methods and fields
 A final class is simply a class that can't be extended. This does not mean that all references to objects of the class would act as if they were declared as final.
 
 Final method can't be overridden (for object scope) or hidden (for static). This allows the developer to create functionality that cannot be changed by subclasses. 
+
+`final` members have to be initialized only once, either in the declaration or in the constructor. Only the reference is final/constant in java: if the final object has methods that can change their content then they could be used after the variable initialization. This mean that java does not have a mechanism to create immutable objects.
+
+
+To create mutable object in java you need to :
+* make the class final
+* make all class fields final
+* no methods to change fields states
+* make all fields private (to avoid calling their methods that can change their states)
 
 ### abstract class
 It cannot be instantiated and may have abstract methods (only abstract classes can have abstract methods). While an interface is used to make a class have a complete set of methods, an abstract class is used to group classes in a family. A class can only extend one abstract class but can implements multiple interfaces.
