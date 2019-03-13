@@ -54,11 +54,11 @@ class TestClass {
 ```
 A top level class cannot be static. Only inner classes can. 
 ### final classes, methods and fields
-A final class is simply a class that can't be extended. This does not mean that all references to objects of the class would act as if they were declared as final.
+A final class cannot be extended. However, not all references to objects of the class are final.
 
-Final method can't be overridden (for object scope) or hidden (for static). This allows the developer to create functionality that cannot be changed by subclasses. 
+A final method can't be overridden by a subclass or hidden.
 
-`final` members have to be initialized only once, either in the declaration or in the constructor. Only the reference is final/constant in java: if the final object has methods that can change their content then they could be used after the variable initialization. This mean that java does not have a mechanism to create immutable objects.
+A final member have to be initialized only once, either in the declaration or in the constructor. Only the reference is final/constant in java: if the final object has methods that can change their content then they could be used after the variable initialization. This mean that java does not have a mechanism to create immutable objects.
 
 
 To create mutable object in java you need to :
@@ -73,6 +73,7 @@ It cannot be instantiated and may have abstract methods (only abstract classes c
 An abstract method cannot be implemented `public abstract void doAbstractStuff();`
 
 The following combinations are illegal: abstract static, abstract final, abstract native, private abstract, synchronized abstract, abstract strictfp.
+
 ### interface
 It is a blueprint that defines a set of behaviors to be implemented. An interface can only have constants, method signatures, default and static methods with implementations and nested types. 
 
@@ -84,6 +85,12 @@ Any method (except static or default starting java 8) are abstract and public. N
 
 Java 8 enables implementing (default and static) methods inside of an interface. Then the difference between a java 8 interface and an abstract class is that interfaces are not a part of the class hierarchy and still does not allow constructors nor non final or private members.
 
+### strictfp
+`strictfp` can only be used for interfaces, classes and non abstract methods. It cannot be used on attributes, abstract methods and constructors. It was introduced back in java 1.2 and its sole existence reason is to make sure floating points calculations have the same result for all platforms (16/32/63 bits processors). For the record, it's an implementation of the IEEE 754 standards for floating points processing. 
+
+### native
+It is only used in methods and only incompatible with strictfp. This is used to call a method from outside the JVM (usually from some C++/C code) using JNI. 
+     
 ### super and this
 `super` is used to access methods of the base class while this is used to access methods of the current class. `super()` refers to constructor of the base class, and this() refers to the constructor of the very class where you are writing this code.
 
