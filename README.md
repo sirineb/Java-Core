@@ -1,4 +1,4 @@
-# Java-Core Cheat sheet
+# Java-Core Cheat Sheet
 ## Java Compilation / Runtime Notions
 ### Java compiler
 Checks syntax rules, then writes bytecode in ".class" files. It differs from other language compilers, which write instructions for the CPU.
@@ -20,6 +20,7 @@ In structured programming, it's common to copy a structure and add or modify the
 ### Polymorphism
 Objects belonging to the same branch of a hierarchy, when told to do the same thing, can manifest that behavior differently.
 ## Java Syntax Notions
+
 ### Access Specifier
 * `public`: Any object in any package can see the variable. 	
 * `protected`: Any object defined in the same package, or a subclass (in any package), can see the variable.
@@ -53,13 +54,13 @@ class TestClass {
 
 ```
 A top level class cannot be static. Only inner classes can. 
+
 ### final classes, methods and fields
 A final class cannot be extended. However, not all references to objects of the class are final.
 
 A final method can't be overridden by a subclass or hidden.
 
 A final member have to be initialized only once, either in the declaration or in the constructor. Only the reference is final/constant in java: if the final object has methods that can change their content then they could be used after the variable initialization. This mean that java does not have a mechanism to create immutable objects.
-
 
 To create mutable object in java you need to :
 * make the class final
@@ -85,6 +86,11 @@ Any method (except static or default starting java 8) are abstract and public. N
 
 Java 8 enables implementing (default and static) methods inside of an interface. Then the difference between a java 8 interface and an abstract class is that interfaces are not a part of the class hierarchy and still does not allow constructors nor non final or private members.
 
+### Enumerations
+Enumerations are classes that have a predefined list of constants. These constants are actually static instances of the enumeration type. All enumerations extend Enum so they cannot extend any other class but they still can implement any interface.
+
+Enumerations can only have private constructors or package private ones. Only the Enumeration can call the constructors to build its constant values.
+ 
 ### strictfp
 `strictfp` can only be used for interfaces, classes and non abstract methods. It cannot be used on attributes, abstract methods and constructors. It was introduced back in java 1.2 and its sole existence reason is to make sure floating points calculations have the same result for all platforms (16/32/63 bits processors). For the record, it's an implementation of the IEEE 754 standards for floating points processing. 
 
@@ -138,10 +144,13 @@ A problem that arises during the execution of a program that disrupts the progra
 * Unchecked exceptions − occur at the time of execution, also called Runtime Exceptions. These include programming bugs, such as logic errors or improper use of an API. Runtime exceptions are ignored at the time of compilation.
 
 All exception classes are subtypes of the java.lang.Exception class. Errors are abnormal conditions that happen in case of severe failures, these are not handled by the Java programs. Example: JVM is out of memory.
+
 #### The Throws/Throw Keywords
 If a method does not handle a checked exception, the method must declare it using the throws keyword. You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the throw keyword.
+
 #### The Finally Block
 The finally block follows a try block or a catch block. A finally block of code always executes.
+
 ### Serialization, externalization and the "transient" keyword
 The serialization of objects allows making a byte sequence from any object that has implemented the Serializable interface; an turning that byte sequence back into an object. The mechanism does not depend on the operating system, allowing transferring objects via a network and restoring them.
 
@@ -149,6 +158,7 @@ To serialize an object, the OutputStream is put into the serialization stream ca
 
 In case of special requirements for the serialization, such as security-sensitive parts of the object, like passwords, the process of serialization could be controlled by implementing the Externalizable interface instead of Serializable. This interface extends the original Serializable interface and adds writeExternal() and readExternal(). 
 Serialized information can be read in a file or in a captured network packet. In case of external information, nothing is written automatically. However, in a serializable object, everything is serialized there automatically. The serialization of any member could be forbidden with the transient modifier. 
+
 ### serialVersionUID
 The serialization runtime associates with each serializable class a version number, called a serialVersionUID, which is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. If the receiver has loaded a class for the object that has a different serialVersionUID than that of the corresponding sender's class, then deserialization will result in an  InvalidClassException. A serializable class can declare its own serialVersionUID explicitly by declaring a field named serialVersionUID that must be static, final, and of type long:
 ```
@@ -156,12 +166,22 @@ ANY-ACCESS-MODIFIER static final long serialVersionUID = 42L;
 ```
 If a serializable class does not explicitly declare a serialVersionUID, then the serialization runtime will calculate a default serialVersionUID value for that class based on various aspects of the class, as described in the Java Object Serialization Specification. However, it is strongly recommended that all serializable classes explicitly declare serialVersionUID values, since the default serialVersionUID computation is highly sensitive to class details that may vary depending on compiler implementations, and can thus result in unexpected InvalidClassExceptions during deserialization. Therefore, to guarantee a consistent serialVersionUID value across different java compiler implementations, a serializable class must declare an explicit serialVersionUID value. It is also strongly advised that explicit serialVersionUID declarations use the private modifier where possible, since such declarations apply only to the immediately declaring class serialVersionUID fields are not useful as inherited members.
 
-### java I/O, Files
+### Java I/O, Files
 The java.io package contains nearly every class to perform input and output (I/O) in Java. Stream is a sequence of data.
 * Byte Streams are input and output of 8-bit bytes. The most used related classes are FileInputStream and FileOutputStream.
-* Character Streams are input and output for 16-bit unicode. The most used related classes are FileReader and FileWriter. Internally FileReader uses FileInputStream and FileWriter uses FileOutputStream but the difference is that FileReader reads two bytes at a time and FileWriter writes two bytes at a time.
+* Character Streams are input and output for 16-bit unicode. The most used related classes are FileReader and FileWriter. 
+
+Internally FileReader uses FileInputStream and FileWriter uses FileOutputStream but the difference is that FileReader reads two bytes at a time and FileWriter writes two bytes at a time.
 * Standard Streams: Standard Input (System.in), Standard Output (System.out) and Standard Error (System.err). 
-* Directories in Java are a File which can contain a list of other files and directories. 	
+* Directories in Java are a File which can contain a list of other files and directories. 
+
+### Annotations
+Annotations are used to add meta data about the program. They can be examined at compile time or at runtime. They can also be used by some software tools that generates code, XML.
+
+Annotation do not do any action, their meta data can be accessed using java reflection. The retention policy annotation defines when the meta data should be discarded. There are three levels of retention policy (SOURCE which is discarded before compile time, CLASS which is the default and discards before runtime and RUNTIME).
+
+By default an annotation can have any target, but we can specify a restriction using the target annotation which is an array. Java also comes with some predefined annotations like override or deprecated. All annotations extend lang.Annotation and cannot extend anything. Only primitive types, String, class, arrays (1 dimension), annotations, enumerations can be used as annotations elements.
+
 ### String, StringBuilder and StringBuffer
 * String is immutable  (once created can not be changed) object. Every immutable object in Java is thread safe: cannot be used by two threads simultaneously. Once assigned, they cannot be changed.
 * StringBuffer is mutable. It has the same methods as the StringBuilder, but each method in StringBuffer is synchronized that is StringBuffer is thread safe.
