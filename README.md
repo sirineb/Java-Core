@@ -205,4 +205,6 @@ A functional interface is an interface with only one abstract method. It is also
 ### Lambda expressions
 Java lambda expressions are new in Java 8. Java lambda expressions are Java's first step into functional programming. A Java lambda expression is thus a function which can be created without belonging to any class. A Java lambda expression can be passed around as if it was an object and executed on demand.
 
-
+### Optional classes
+Optional is a container object used to contain not-null objects. Optional object is used to represent null with absent value. This class has various utility methods to facilitate code to handle values as ‘available’ or ‘not available’ instead of checking null values. 
+`public final class Optional<T> extends Object`
