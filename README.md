@@ -55,7 +55,7 @@ class TestClass {
 ```
 A top level class cannot be static. Only inner classes can. 
 
-### final classes, methods and fields
+### Final classes, methods and fields
 A final class cannot be extended. However, not all references to objects of the class are final.
 
 A final method can't be overridden by a subclass or hidden.
@@ -68,14 +68,14 @@ To create mutable object in java you need to :
 * no methods to change fields states
 * make all fields private (to avoid calling their methods that can change their states)
 
-### abstract class
+### Abstract class
 It cannot be instantiated and may have abstract methods (only abstract classes can have abstract methods). While an interface is used to make a class have a complete set of methods, an abstract class is used to group classes in a family. A class can only extend one abstract class but can implements multiple interfaces.
 
 An abstract method cannot be implemented `public abstract void doAbstractStuff();`
 
 The following combinations are illegal: abstract static, abstract final, abstract native, private abstract, synchronized abstract, abstract strictfp.
 
-### interface
+### Interface
 It is a blueprint that defines a set of behaviors to be implemented. An interface can only have constants, method signatures, default and static methods with implementations and nested types. 
 
 An class can implement one interface or more. An interface can extend multiple interfaces. Constructors are not allowed in interfaces, and an interface cannot be instantiated.
@@ -145,10 +145,10 @@ A problem that arises during the execution of a program that disrupts the progra
 
 All exception classes are subtypes of the java.lang.Exception class. Errors are abnormal conditions that happen in case of severe failures, these are not handled by the Java programs. Example: JVM is out of memory.
 
-#### The Throws/Throw Keywords
+#### The throws/throw keywords
 If a method does not handle a checked exception, the method must declare it using the throws keyword. You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the throw keyword.
 
-#### The Finally Block
+#### The finally block
 The finally block follows a try block or a catch block. A finally block of code always executes.
 
 ### Serialization, externalization and the "transient" keyword
