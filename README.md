@@ -202,3 +202,7 @@ They introduce their own type variable to be used in the scope of the method. Th
 ### Functional interfaces
 A functional interface is an interface with only one abstract method. It is also called Single Abstract Method Interface or SAM Interface. A functional interface can extend another interface if the later does not have any abstract methods.      * Java 8 comes with a set of predefined functional interfaces in the java.util.function package such as Consumer<T> BiConsumer<T,U> or Function<T,R>. 
 
+### Lambda expressions
+Java lambda expressions are new in Java 8. Java lambda expressions are Java's first step into functional programming. A Java lambda expression is thus a function which can be created without belonging to any class. A Java lambda expression can be passed around as if it was an object and executed on demand.
+
+
