@@ -182,8 +182,23 @@ Annotation do not do any action, their meta data can be accessed using java refl
 
 By default an annotation can have any target, but we can specify a restriction using the target annotation which is an array. Java also comes with some predefined annotations like override or deprecated. All annotations extend lang.Annotation and cannot extend anything. Only primitive types, String, class, arrays (1 dimension), annotations, enumerations can be used as annotations elements.
 
+### Generics
+Generic types and methods (added in java 5) allows a class, a method or an interface to have a type (class or interface) parameter in order to achieve strong type checking at compile time, avoid casts and implementing generic algorithms. We define a generic type (class or interface) using the syntax ClassName<T1,T2,T3...>. The Ts are called type variables and can be any non-primitive type you specify any class type, any interface type, any array type, or even another type variable. 
+
+We can restrict the type variable to a family of classes using the extends keyword (for classes and interfaces) so that we can only have type variables extending or implementing the given type. This is called bounded type parameter and it makes us call methods of the extended class from a T object. We can even have multiple bounded types using the & operator, even mixing interfaces and classes, but classes should be first or we get a nasty error, of course we can use only one class and multiple interface and also the type used concretely should satisfy the equation of extends and implements. 
+
+#### Generic constructors
+They introduce their own type variable to be used in the the scope of the constructor. This can be used in a non generic class also. 
+
+#### Generic methods
+They introduce their own type variable to be used in the scope of the method. They can be used in a non generic type too. They can be static also. 
+
 ### String, StringBuilder and StringBuffer
 * String is immutable  (once created can not be changed) object. Every immutable object in Java is thread safe: cannot be used by two threads simultaneously. Once assigned, they cannot be changed.
 * StringBuffer is mutable. It has the same methods as the StringBuilder, but each method in StringBuffer is synchronized that is StringBuffer is thread safe.
 * StringBuilder is same as the StringBuffer. It stores the object in heap and it can also be modified. StringBuilder is not thread safe. StringBuilder is fast as it is not thread safe. 
+
+## Java 8
+### Functional interfaces
+A functional interface is an interface with only one abstract method. It is also called Single Abstract Method Interface or SAM Interface. A functional interface can extend another interface if the later does not have any abstract methods.      * Java 8 comes with a set of predefined functional interfaces in the java.util.function package such as Consumer<T> BiConsumer<T,U> or Function<T,R>. 
 
