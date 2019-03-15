@@ -176,9 +176,9 @@ Internally FileReader uses FileInputStream and FileWriter uses FileOutputStream 
 * Directories in Java are a File which can contain a list of other files and directories. 
 
 ### Annotations
-Annotations are used to add meta data about the program. They can be examined at compile time or at runtime. They can also be used by some software tools that generates code, XML.
+Annotations are used to add metadata about the program. They can be examined at compile time or at runtime. They can also be used by some software tools that generates code, XML.
 
-Annotation do not do any action, their meta data can be accessed using java reflection. The retention policy annotation defines when the meta data should be discarded. There are three levels of retention policy (SOURCE which is discarded before compile time, CLASS which is the default and discards before runtime and RUNTIME).
+Annotation do not do any action, their metadata can be accessed using java reflection. The retention policy annotation defines when the metadata should be discarded. There are three levels of retention policy (SOURCE which is discarded before compile time, CLASS which is the default and discards before runtime and RUNTIME).
 
 By default an annotation can have any target, but we can specify a restriction using the target annotation which is an array. Java also comes with some predefined annotations like override or deprecated. All annotations extend lang.Annotation and cannot extend anything. Only primitive types, String, class, arrays (1 dimension), annotations, enumerations can be used as annotations elements.
 
